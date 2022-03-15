@@ -4,6 +4,10 @@ console.log("*** WELCOME TO MARVEL QUIZ ***\n\n");
 var name = readlineSync.question('What is your name?\t');
 
 console.log("Welcome " + name);
+var highscore={
+  name:"Alen",
+  value:10
+}
 
 console.log("\n\n ***If you answer 5 right you go to level 2, then 3 right you go to level 3***\n\n");
 
@@ -33,7 +37,7 @@ var question6 = {
 }
 var question7 = {
   question: "7.Who was the last holder of the Space Stone before Thanos claims it for his Infinity Gauntlet?\n",
-  answer: "The Collector"
+  answer: "Collector"
 }
 var question8 = {
   question: "8.Who is Black Panther’s sister?\n",
@@ -69,32 +73,35 @@ function game(ques) {
     console.log("-------------------------------------------------------------------------------------");
   }
 }
-for (let i = 0; i < questions.length; i++) {
-   game(questions[i])
-if (score === 5) {
-  console.log("YOU HAVE CLEARED LEVEL 1\n\n");
-  console.log("-------------------------------------------------------------------------------------");
-  console.log("-------------------------------------------------------------------------------------");
-  for (let j = 4; j < questions.length; j++) {
-    game(questions[j])
-    if (score === 8) {
-      console.log("YOU CLEARED LEVEL 2");
+for (let i = 0; i < 6; i++) {
+    if (score===5){
+      console.log("YOU HAVE CLEARED LEVEL 1\n\n");
       console.log("-------------------------------------------------------------------------------------");
       console.log("-------------------------------------------------------------------------------------");
-      for (let k = 7; k < questions.length; k++) {
-        game(questions[k])
-        console.log("\tGREAT GAME")
-        console.log("YOU HAVE SCORED :  " + score);
-        console.log("-------------------------------------------------------------------------------------");
-        console.log("-------------------------------------------------------------------------------------");
+      for(let j=5; j<9 ; j++){
+        if (score ===8){
+          console.log("YOU CLEARED LEVEL 2\n\n");
+          console.log("-------------------------------------------------------------------------------------");
+          console.log("-------------------------------------------------------------------------------------");
+          for (let k = 7; k < questions.length; k++){
+            if(score===11){
+              console.log("\tGREAT GAME");
+              console.log("-------------------------------------------------------------------------------------");
+              console.log("-------------------------------------------------------------------------------------");
+            }
+            else
+              game(questions[k]) 
+          }
+        }
+        else
+          game(questions[j])
       }
     }
-    else{
-    console.log("YOU HAVE SCORED :  " + score);
-    }
+     else
+     game(questions[i])
   }
+
+console.log("YOU HAVE SCORED :  " + score);
+if(score>highscore.value){
+  console.log("YOU ARE THE HIGHSCORER \n PLEASE SEND A SCREENSHORT OF YOUR SCORE");
 }
-   else{
-   console.log("YOU HAVE SCORED :  " + score);
-   }
- }
